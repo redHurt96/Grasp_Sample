@@ -18,10 +18,12 @@ namespace _Project.Infrastructure
                 _player.StoredItems.Add(CreateRandomItem());
         }
 
-        private Item CreateRandomItem() =>
-            new((Slot)Range(0, GetValues(typeof(Slot)).Length),
-                Range(0, 1000).ToString(),
+        private Item CreateRandomItem()
+        {
+            return new((Slot)Range(0, GetValues(typeof(Slot)).Length),
+                 $"Item_{Range(0, 1000)}",
                 Range(0, 100),
                 Range(0, 100));
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace _Project.Inventory
         public void SetItem(Item item)
         {
             _item = item;
-            _name.text = $"{item.Slot}_{item.Name}";
+            _name.text = $"{item.Slot}: {item.Name}";
             _betterMark.enabled = CheckItemBetter();
         } 
 
