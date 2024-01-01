@@ -2,6 +2,8 @@ namespace _Project.Inventory
 {
     public class Item
     {
+        public string FullName => $"{Slot}: {Name}";
+        
         public readonly Slot Slot;
         public readonly string Name;
         public readonly int Charm;

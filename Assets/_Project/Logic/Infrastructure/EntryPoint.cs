@@ -15,7 +15,7 @@ namespace _Project.Infrastructure
         public void Initialize()
         {
             for (int i = 0; i < 18; i++)
-                _player.StoredItems.Add(CreateRandomItem());
+                _player.Add(CreateRandomItem());
         }
 
         private Item CreateRandomItem()

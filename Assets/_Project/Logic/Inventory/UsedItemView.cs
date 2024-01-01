@@ -5,7 +5,7 @@ using Zenject;
 
 namespace _Project.Inventory
 {
-    public class ItemPanel : MonoBehaviour
+    public class UsedItemView : MonoBehaviour
     {
         [SerializeField] private Button _replace;
         [SerializeField] private Text _name;
@@ -20,21 +20,14 @@ namespace _Project.Inventory
             _player = player;
 
         private void Start() => 
-            _replace.onClick.AsObservable().Subscribe(_ => Move()).AddTo(this);
+            _replace.onClick.AsObservable().Subscribe(_ => _player.Store(_item)).AddTo(this);
 
         public void SetItem(Item item)
         {
             _item = item;
-            _name.text = $"{item.Slot}: {item.Name}";
+            _name.text = item.FullName;
             _charm.text = $"Charm +{item.Charm}";
             _damage.text = $"Damage +{item.Damage}";
-        }
-
-        private void Move()
-        {
-            _player.UsedItems.Remove(_item);
-            _player.StoredItems.Add(_item);
-            _player.InvokeUpdate();
         }
     }
 }
