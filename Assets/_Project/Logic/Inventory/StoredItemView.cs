@@ -5,12 +5,11 @@ using Zenject;
 
 namespace _Project.Inventory
 {
-    public class ItemPanel : MonoBehaviour
+    public class StoredItemView : MonoBehaviour
     {
         [SerializeField] private Button _replace;
         [SerializeField] private Text _name;
-        [SerializeField] private Text _charm;
-        [SerializeField] private Text _damage;
+        [SerializeField] private Image _betterMark;
         
         private Player _player;
         private Item _item;
@@ -26,15 +25,27 @@ namespace _Project.Inventory
         {
             _item = item;
             _name.text = $"{item.Slot}: {item.Name}";
-            _charm.text = $"Charm +{item.Charm}";
-            _damage.text = $"Damage +{item.Damage}";
-        }
+            _betterMark.enabled = CheckItemBetter();
+        } 
 
         private void Move()
         {
-            _player.UsedItems.Remove(_item);
-            _player.StoredItems.Add(_item);
+            _player.StoredItems.Remove(_item);
+            _player.UsedItems.Add(_item);
             _player.InvokeUpdate();
+        }
+
+        private bool CheckItemBetter()
+        {
+            Item toCompare = _player.UsedItems.Find(x => x.Slot == _item.Slot);
+            
+            if (toCompare == null)
+                return true;
+
+            int originStatsSum = _item.Charm + _item.Damage;
+            int toCompareStatsSum = toCompare.Charm + toCompare.Damage;
+
+            return originStatsSum > toCompareStatsSum;
         }
     }
 }

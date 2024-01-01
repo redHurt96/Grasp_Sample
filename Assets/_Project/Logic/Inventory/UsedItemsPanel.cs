@@ -6,7 +6,7 @@ namespace _Project.Inventory
     public class UsedItemsPanel : MonoBehaviour
     {
         [SerializeField] private Transform _anchor;
-        [SerializeField] private ItemPanel _resource;
+        [SerializeField] private UsedItemView _resource;
         
         private Player _player;
         private IInstantiator _instantiator;
@@ -34,8 +34,8 @@ namespace _Project.Inventory
 
             foreach (Item item in _player.UsedItems)
             {
-                ItemPanel panel = _instantiator.InstantiatePrefabForComponent<ItemPanel>(_resource, _anchor);
-                panel.SetItem(item);
+                UsedItemView view = _instantiator.InstantiatePrefabForComponent<UsedItemView>(_resource, _anchor);
+                view.SetItem(item);
             }
         }
     }
