@@ -22,8 +22,14 @@ namespace _Project.Inventory
 
         public void Use(Item item)
         {
+            Item toReplace = _usedItems.Find(x => x.Slot == item.Slot);
+
+            if (toReplace != null)
+                Store(toReplace);
+            
             _usedItems.Add(item);
             _storedItems.Remove(item);
+            
             Updated?.Invoke();
         }
 
