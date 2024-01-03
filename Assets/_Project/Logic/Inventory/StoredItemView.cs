@@ -19,33 +19,13 @@ namespace _Project.Inventory
             _player = player;
 
         private void Start() => 
-            _replace.onClick.AsObservable().Subscribe(_ => Move()).AddTo(this);
+            _replace.onClick.AsObservable().Subscribe(_ => _player.Use(_item)).AddTo(this);
 
         public void SetItem(Item item)
         {
             _item = item;
             _name.text = $"{item.Slot}: {item.Name}";
-            _betterMark.enabled = CheckItemBetter();
-        } 
-
-        private void Move()
-        {
-            _player.StoredItems.Remove(_item);
-            _player.UsedItems.Add(_item);
-            _player.InvokeUpdate();
-        }
-
-        private bool CheckItemBetter()
-        {
-            Item toCompare = _player.UsedItems.Find(x => x.Slot == _item.Slot);
-            
-            if (toCompare == null)
-                return true;
-
-            int originStatsSum = _item.Charm + _item.Damage;
-            int toCompareStatsSum = toCompare.Charm + toCompare.Damage;
-
-            return originStatsSum > toCompareStatsSum;
+            _betterMark.enabled = _player.IsItemBetterThanUsed(_item);
         }
     }
 }
