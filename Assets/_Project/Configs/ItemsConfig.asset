@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f282e2619bff416da486a6ebbd7a5900, type: 3}
+  m_Name: ItemsConfig
+  m_EditorClassIdentifier: 
+  Items:
+  - Slot: 0
+    MinCharm: 1
+    MaxCharm: 50
+    MinDamage: 0
+    MaxDamage: 10
+  - Slot: 1
+    MinCharm: 5
+    MaxCharm: 100
+    MinDamage: 0
+    MaxDamage: 12
+  - Slot: 2
+    MinCharm: 1
+    MaxCharm: 30
+    MinDamage: 1
+    MaxDamage: 30
+  - Slot: 3
+    MinCharm: 0
+    MaxCharm: 20
+    MinDamage: 0
+    MaxDamage: 20
+  - Slot: 4
+    MinCharm: 1
+    MaxCharm: 10
+    MinDamage: 20
+    MaxDamage: 100
+  - Slot: 5
+    MinCharm: 1
+    MaxCharm: 20
+    MinDamage: 1
+    MaxDamage: 20

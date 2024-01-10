@@ -806,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24c5367631ff4b9fb27c370c5c12c29b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemsConfig: {fileID: 11400000, guid: 4058d11a279b48f4582747831c077f0b, type: 2}
 --- !u!224 &1388543693 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 177346159787177105, guid: 83d4bd789a066f84aa2cadb9c83eedf0, type: 3}

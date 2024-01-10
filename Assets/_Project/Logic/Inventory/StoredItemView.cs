@@ -8,6 +8,7 @@ namespace _Project.Inventory
     public class StoredItemView : MonoBehaviour
     {
         [SerializeField] private Button _replace;
+        [SerializeField] private Button _destroy;
         [SerializeField] private Text _name;
         [SerializeField] private Image _betterMark;
         
@@ -18,20 +19,29 @@ namespace _Project.Inventory
         private void Construct(Player player) => 
             _player = player;
 
-        private void Start() => 
+        private void Start()
+        {
             _replace.onClick.AsObservable().Subscribe(_ => Move()).AddTo(this);
+            _destroy.onClick.AsObservable().Subscribe(_ => DestroyItem()).AddTo(this);
+        }
 
         public void SetItem(Item item)
         {
             _item = item;
             _name.text = $"{item.Slot}: {item.Name}";
             _betterMark.enabled = CheckItemBetter();
-        } 
+        }
 
         private void Move()
         {
             _player.StoredItems.Remove(_item);
             _player.UsedItems.Add(_item);
+            _player.InvokeUpdate();
+        }
+
+        private void DestroyItem()
+        {
+            _player.StoredItems.Remove(_item);
             _player.InvokeUpdate();
         }
 

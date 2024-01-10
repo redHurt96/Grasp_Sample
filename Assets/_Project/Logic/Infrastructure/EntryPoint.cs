@@ -1,3 +1,4 @@
+using System.Linq;
 using _Project.Inventory;
 using Zenject;
 using static System.Enum;
@@ -8,9 +9,13 @@ namespace _Project.Infrastructure
     public class EntryPoint : IInitializable
     {
         private readonly Player _player;
+        private readonly ItemsConfig _itemsConfig;
 
-        public EntryPoint(Player player) => 
+        public EntryPoint(Player player, ItemsConfig itemsConfig)
+        {
             _player = player;
+            _itemsConfig = itemsConfig;
+        }
 
         public void Initialize()
         {
@@ -20,10 +25,13 @@ namespace _Project.Infrastructure
 
         private Item CreateRandomItem()
         {
-            return new((Slot)Range(0, GetValues(typeof(Slot)).Length),
+            Slot slot = (Slot)Range(0, GetValues(typeof(Slot)).Length);
+            ItemConfig config = _itemsConfig.Items.First(x => x.Slot == slot);
+
+            return new(slot,
                  $"Item_{Range(0, 1000)}",
-                Range(0, 100),
-                Range(0, 100));
+                Range(config.MinCharm, config.MaxCharm),
+                 Range(config.MinDamage, config.MaxDamage));
         }
     }
 }
