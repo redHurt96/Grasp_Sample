@@ -1,3 +1,4 @@
+using System;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ namespace _Project.Inventory
         public void SetItem(Item item)
         {
             _item = item;
-            _name.text = $"{item.Slot}: {item.Name}";
+            _name.text = item.Name;
             _betterMark.enabled = CheckItemBetter();
         }
 

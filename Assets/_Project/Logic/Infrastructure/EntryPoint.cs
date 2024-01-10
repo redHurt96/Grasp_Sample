@@ -19,7 +19,7 @@ namespace _Project.Infrastructure
 
         public void Initialize()
         {
-            for (int i = 0; i < 18; i++)
+            for (int i = 0; i < 10; i++)
                 _player.StoredItems.Add(CreateRandomItem());
         }
 
@@ -29,7 +29,7 @@ namespace _Project.Infrastructure
             ItemConfig config = _itemsConfig.Items.First(x => x.Slot == slot);
 
             return new(slot,
-                 $"Item_{Range(0, 1000)}",
+                 $"{slot}_{Range(0, 1000)}",
                 Range(config.MinCharm, config.MaxCharm),
                  Range(config.MinDamage, config.MaxDamage));
         }
